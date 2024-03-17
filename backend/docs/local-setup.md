@@ -29,8 +29,6 @@ pip install -r requirements.txt
 ```
 
 **3. Set up the database**
-
-<u>Local:</u>
     
 3a. Install PostgreSQL.
 
