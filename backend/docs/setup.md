@@ -90,7 +90,9 @@ SQLALCHEMY_TRACK_MODIFICATIONS = "False"
 RUN_DEBUG_MODE = "True"
 ```
 
-h. Run this command to start the backend server within the `backend` directory:
+**4. Start the backend server**
+
+Run the command below within the `backend` directory to start the backend server. This will start it in debug mode with all the necessary environment variables configured.
 
 ```bash
 ./dev.sh
