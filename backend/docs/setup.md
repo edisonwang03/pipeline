@@ -92,7 +92,7 @@ RUN_DEBUG_MODE = "True"
 
 **4. Start the backend server**
 
-Run the command below within the `backend` directory to start the backend server. This will start it in debug mode with all the necessary environment variables configured.
+Run the command below within the `pipeline/backend` directory to start the backend server. This will start it in debug mode with all the necessary environment variables configured.
 
 ```bash
 ./dev.sh
