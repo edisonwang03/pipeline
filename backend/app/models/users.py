@@ -1,11 +1,24 @@
 import uuid
 from typing import Dict, Union
 
-from app.extensions import db
+from app.extensions import db, login_manager
+from flask_login import UserMixin
 from sqlalchemy.dialects.postgresql import UUID
 
+@login_manager.user_loader
+def load_user(user_id: str):
+    """
+    A callback function that is used to reload the user object from the user ID stored in the session.
 
-class User(db.Model):
+    Args:
+        user_id (str): The user ID
+
+    Returns:
+        User: The user object
+    """
+    return User.query.get(uuid.UUID(user_id))
+
+class User(UserMixin, db.Model):
     """
     Represents a user in the system. Each instance of a user is stored in the 'users' table of the database
 

@@ -3,6 +3,7 @@ from flask import Flask
 from config import Config
 from app.extensions import db
 from app.routes.users import users_bp
+from app.routes.auth import auth_bp
 
 from sqlalchemy import text
 
@@ -10,7 +11,7 @@ def create_app(config_class=Config):
     """
     Create a Flask application using the app factory pattern.
     
-    Params:
+    Args:
         config_class (Config): The configuration settings to use
         
     Returns:
@@ -28,5 +29,6 @@ def create_app(config_class=Config):
     
     # Register blueprints here
     app.register_blueprint(users_bp)
+    app.register_blueprint(auth_bp)
 
     return app

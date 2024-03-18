@@ -1,5 +1,5 @@
 from app.extensions import db
-from app.models.user import User
+from backend.app.models.users import User
 from flask import Blueprint, abort, jsonify, request
 from werkzeug.security import generate_password_hash
 
@@ -43,7 +43,7 @@ def delete_user(user_id):
     Route:
         http://localhost:5000/users/<user_id>
 
-    Params:
+    Args:
         user_id (UUID): The unique identifier of the user
 
     Returns:
