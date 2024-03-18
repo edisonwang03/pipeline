@@ -38,7 +38,7 @@ def get_user(email: str) -> User:
     Returns:
         User: The user
     """
-    return User.query.get(email)
+    return User.query.filter_by(email=email).first()
 
 def create_user(email: str, password: str, name: str) -> User:
     """
@@ -70,6 +70,6 @@ def delete_user(email: str) -> None:
     Args:
         email (str): The email of the user
     """
-    user = User.query.get(email)
+    user = get_user(email)
     db.session.delete(user)
     db.session.commit()

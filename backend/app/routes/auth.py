@@ -1,7 +1,7 @@
 from flask_login import login_user, logout_user, login_required, current_user
 from app.controllers.users import user_exists, get_user
 from werkzeug.security import check_password_hash
-from flask import Blueprint, abort, request, jsonify
+from flask import Blueprint, abort, request
 
 auth_bp = Blueprint("auth", __name__)
 
@@ -15,7 +15,7 @@ def login_route():
     }
 
     Route:
-        http://localhost:5000/login/<uuid:user_id>
+        http://localhost:5000/login
 
     Returns:
         str: A message indicating that the user has been logged in
@@ -24,9 +24,9 @@ def login_route():
     email = data["email"]
     password = data["password"]
     if not user_exists(email):
-        abort(401)
+        abort(404)
     user = get_user(email)
-    if check_password_hash(user.password, password):
+    if not check_password_hash(user.password, password):
         abort(401)
     login_user(user)
     return f"{user} logged in successfully", 200
@@ -43,9 +43,9 @@ def logout_route():
     Returns:
         str: A message indicating that the user has been logged out
     """
-    user = current_user
+    user_repr = current_user.__repr__()
     logout_user()
-    return f"{user} logged out successfully", 200
+    return f"{user_repr} logged out successfully", 200
 
 
 

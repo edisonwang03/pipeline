@@ -1,12 +1,11 @@
 from flask import Flask
 
 from config import Config
-from app.extensions import db
+from app.extensions import db, login_manager
 from app.routes.users import users_bp
 from app.routes.auth import auth_bp
 from app.util import Base32Converter
 
-from sqlalchemy import text
 
 def create_app(config_class=Config):
     """
@@ -26,6 +25,7 @@ def create_app(config_class=Config):
     
     # Initialize Flask extensions here
     db.init_app(app)
+    login_manager.init_app(app)
     
     # Create the database tables
     with app.app_context():

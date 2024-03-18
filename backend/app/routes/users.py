@@ -1,5 +1,3 @@
-from app.extensions import db
-from app.models.users import User
 from app.controllers.users import user_exists, create_user, delete_user
 from flask import Blueprint, abort, jsonify, request
 
